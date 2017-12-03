@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <div style="width: 640px; height: 480px; background-color: aqua;">
+    <OBJECT style="width: 640px; height: 480px" classid="CLSID:872b31ba-01b5-4264-93e0-169d9c298c06" id="player">
+      <param  name="HostIP" value="115.239.206.24" />
+      <param name="HostPort" value="8000" />
+    </OBJECT>
+  </div>
+  <button id="Init">Init</button>
+  <button id="start">start</button>
+  <button id="stop">stop</button>
+  <button id="cleanup">cleanup</button>
+
+  <div style="width: 640px; height: 480px; background-color: aqua;">
+      <OBJECT style="width: 640px; height: 480px" classid="CLSID:872b31ba-01b5-4264-93e0-169d9c298c06" id="player2"></OBJECT>
+    </div>
+    <button id="Init2">Init2</button>
+    <button id="start2">start2</button>
+    <button id="stop2">stop2</button>
+    <button id="cleanup2">cleanup2</button>
+
+  <script>
+    // window.onload=function(){
+    //   var player = document.getElementById("player");
+    //   player.AboutBox();
+    // }
+    var btnAbout = document.getElementById('Init');
+    var btnStart = document.getElementById('start');
+    var btnStop = document.getElementById('stop');
+    var btnCleanup = document.getElementById('cleanup');
+    var player = document.getElementById('player');
+    btnAbout.onclick = function(){
+      var r = player.Init();
+      if(!r){
+        alert('init error');
+      }
+    }
+    btnStart.onclick = function(){
+      player.HostIP = '115.239.206.246';
+      player.HostPort = 8000;
+      player.Channel = 33;
+      player.UserName = 'admin';
+      player.Password = 'a1234567';
+      player.StartPlay();
+    }
+    btnStop.onclick = function(){
+      player.StopPlay();
+    }
+    btnCleanup.onclick =function(){
+      player.Cleanup();
+    }
+
+    var btnAbout2 = document.getElementById('Init2');
+    var btnStart2 = document.getElementById('start2');
+    var btnStop2 = document.getElementById('stop2');
+    var btnCleanup2 = document.getElementById('cleanup2');
+    var player2 = document.getElementById('player2');
+    btnAbout2.onclick = function(){
+      var r = player2.Init();
+      if(!r){
+        alert('init error');
+      }
+    }
+    btnStart2.onclick = function(){
+      
+      player2.HostIP = '115.239.206.246';
+      player2.Channel = 33;
+      player2.UserName = 'admin';
+      player2.Password = 'a1234567';
+      player2.StartPlay();
+    }
+    btnStop2.onclick = function(){
+      player2.StopPlay();
+    }
+    btnCleanup2.onclick = function(){
+      player2.Cleanup();
+    }
+  </script>
+</body>
+</html>
