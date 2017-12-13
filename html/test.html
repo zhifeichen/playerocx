@@ -7,25 +7,23 @@
   <title>Document</title>
 </head>
 <body>
-  <div style="width: 640px; height: 480px; background-color: aqua;">
-    <OBJECT style="width: 640px; height: 480px" classid="CLSID:872b31ba-01b5-4264-93e0-169d9c298c06" id="player">
-      <param  name="HostIP" value="115.239.206.24" />
-      <param name="HostPort" value="8000" />
-    </OBJECT>
+  <div id="player" style="width: 640px; height: 480px; background-color: aqua;">
+    <!-- <OBJECT style="width: 640px; height: 480px" classid="CLSID:872b31ba-01b5-4264-93e0-169d9c298c06" id="player"></OBJECT> -->
   </div>
   <button id="Init">Init</button>
   <button id="start">start</button>
   <button id="stop">stop</button>
   <button id="cleanup">cleanup</button>
 
-  <div style="width: 640px; height: 480px; background-color: aqua;">
-      <OBJECT style="width: 640px; height: 480px" classid="CLSID:872b31ba-01b5-4264-93e0-169d9c298c06" id="player2"></OBJECT>
+  <div id="player2" style="width: 640px; height: 480px; background-color: aqua;">
+      <!-- <OBJECT style="width: 640px; height: 480px" classid="CLSID:872b31ba-01b5-4264-93e0-169d9c298c06" id="player2"></OBJECT> -->
     </div>
     <button id="Init2">Init2</button>
     <button id="start2">start2</button>
     <button id="stop2">stop2</button>
     <button id="cleanup2">cleanup2</button>
 
+  <script src="./player.js"></script>
   <script>
     // window.onload=function(){
     //   var player = document.getElementById("player");
@@ -35,7 +33,15 @@
     var btnStart = document.getElementById('start');
     var btnStop = document.getElementById('stop');
     var btnCleanup = document.getElementById('cleanup');
-    var player = document.getElementById('player');
+    // var player = document.getElementById('player');
+    var player = new Player(document.getElementById('player'), {
+      type: 0,
+      hostIP: '60.191.194.246',
+      hostPort: 8000,
+      channel: 33,
+      userName: 'admin',
+      password: 'lin630563',
+    });
     btnAbout.onclick = function(){
       var r = player.Init();
       if(!r){
@@ -43,15 +49,15 @@
       }
     }
     btnStart.onclick = function(){
-      player.HostIP = '115.239.206.246';
-      player.HostPort = 8000;
-      player.Channel = 33;
-      player.UserName = 'admin';
-      player.Password = 'a1234567';
-      player.StartPlay();
+      // player.HostIP = '115.239.206.246';
+      // player.HostPort = 8000;
+      // player.Channel = 33;
+      // player.UserName = 'admin';
+      // player.Password = 'a1234567';
+      player.startPlay();
     }
     btnStop.onclick = function(){
-      player.StopPlay();
+      player.stopPlay();
     }
     btnCleanup.onclick =function(){
       player.Cleanup();
@@ -61,7 +67,13 @@
     var btnStart2 = document.getElementById('start2');
     var btnStop2 = document.getElementById('stop2');
     var btnCleanup2 = document.getElementById('cleanup2');
-    var player2 = document.getElementById('player2');
+    // var player2 = document.getElementById('player2');
+    var player2 = new Player(document.getElementById('player2'), {
+      type: 1,
+      appKey: '7fbc3cdc0ad649f88831b6adc08b9843',
+      accessToken: 'at.7f2v4fpv6530olun0726cx702uq1ihwq-2h5jtmzikp-0gil3e1-ybiz56dhy',
+      url: 'ezopen://open.ys7.com/426875565/1.hd.live',
+    });
     btnAbout2.onclick = function(){
       var r = player2.Init();
       if(!r){
@@ -70,14 +82,14 @@
     }
     btnStart2.onclick = function(){
       
-      player2.HostIP = '115.239.206.246';
-      player2.Channel = 33;
-      player2.UserName = 'admin';
-      player2.Password = 'a1234567';
-      player2.StartPlay();
+      // player2.HostIP = '115.239.206.246';
+      // player2.Channel = 33;
+      // player2.UserName = 'admin';
+      // player2.Password = 'a1234567';
+      player2.startPlay();
     }
     btnStop2.onclick = function(){
-      player2.StopPlay();
+      player2.stopPlay();
     }
     btnCleanup2.onclick = function(){
       player2.Cleanup();
