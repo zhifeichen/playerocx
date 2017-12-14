@@ -4,18 +4,18 @@ function Player(container, option) {
     }
     hikPlayerHtml = '<object classid="clsid:872B31BA-01B5-4264-93E0-169d9C298C06" style="width: 100%; height: 100%"></object>';
     ezuPlayerHtml = '<object classid="clsid:54FC7795-1014-4BF6-8BA3-500C61EC1A05" style="width: 100%; height: 100%"></object>';
-    if(!option.type || option.type === 0) {
+    if(!option.type || option.type === 0) { // hikPlayer
         container.innerHTML = hikPlayerHtml;
 
-        this.hikPlayer = container.children[0];
         this.type = 0;
+        this.hikPlayer = container.children[0];
         this.hikPlayer.Init();
         this.hikPlayer.HostIP = option.hostIP;
         this.hikPlayer.HostPort = option.hostPort;
         this.hikPlayer.Channel = option.channel;
         this.hikPlayer.UserName = option.userName;
         this.hikPlayer.Password = option.password;
-    } else if(option.type === 1) {
+    } else if(option.type === 1) { // ezuPlayer
         container.innerHTML = ezuPlayerHtml;
 
         this.type = 1;
@@ -27,17 +27,17 @@ function Player(container, option) {
 }
 
 Player.prototype.startPlay = function() {
-    if(this.type === 0) {
+    if(this.type === 0) { // hikPlayer
         this.hikPlayer.StartPlay();
-    } else if(this.type === 1) {
+    } else if(this.type === 1) { // ezuPlayer
         this.ezuPlayer.StartPlay(this.ezuUrl);
     }
 }
 
 Player.prototype.stopPlay = function() {
-    if(this.type === 0) {
+    if(this.type === 0) { // hikPlayer
         this.hikPlayer.StopPlay();
-    } else if(this.type === 1) {
+    } else if(this.type === 1) { // ezuPlayer
         this.ezuPlayer.StopPlay();
     }
 }
