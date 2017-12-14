@@ -2,7 +2,7 @@ function Player(container, option) {
     if(!(this instanceof Player)) {
         return new Player(container, option);
     }
-    hikPlayerHtml = '<object classid="clsid:872b31ba-01b5-4264-93e0-169d9c298c06" style="width: 100%; height: 100%"></object>';
+    hikPlayerHtml = '<object classid="clsid:872B31BA-01B5-4264-93E0-169d9C298C06" style="width: 100%; height: 100%"></object>';
     ezuPlayerHtml = '<object classid="clsid:54FC7795-1014-4BF6-8BA3-500C61EC1A05" style="width: 100%; height: 100%"></object>';
     if(!option.type || option.type === 0) {
         container.innerHTML = hikPlayerHtml;
@@ -22,7 +22,7 @@ function Player(container, option) {
         this.ezuPlayer = container.children[0];
         this.ezuPlayer.InitWithAppKey(option.appKey);
         this.ezuPlayer.SetAccessToken(option.accessToken);
-        this.ezuUrl = option.url;
+        this.ezuUrl = 'ezopen://open.ys7.com/' + option.device + '/' + option.channel + '.hd.live';
     }
 }
 
@@ -37,7 +37,6 @@ Player.prototype.startPlay = function() {
 Player.prototype.stopPlay = function() {
     if(this.type === 0) {
         this.hikPlayer.StopPlay();
-        this.hikPlayer.Cleanup();
     } else if(this.type === 1) {
         this.ezuPlayer.StopPlay();
     }
