@@ -5,9 +5,21 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Document</title>
+
+  <!-- Bootstrap Core CSS -->
+  <link href="./bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Menu CSS -->
+  <link href="./plugins/bower_components/sidebar-nav/dist/sidebar-nav.min.css" rel="stylesheet">
+  <!-- animation CSS -->
+  <link href="./css/animate.css" rel="stylesheet">
+  <!-- Custom CSS -->
+  <link href="./css/style.css" rel="stylesheet">
+  <!-- color CSS -->
+  <link href="./css/colors/default.css" id="theme" rel="stylesheet">
 </head>
 <body>
   <div id="player" style="width: 640px; height: 480px; background-color: aqua;">
+    <object></object>
     <!-- <OBJECT style="width: 640px; height: 480px" classid="CLSID:872b31ba-01b5-4264-93e0-169d9c298c06" id="player"></OBJECT> -->
   </div>
   <button id="Init">Init</button>
@@ -16,6 +28,7 @@
   <button id="cleanup">cleanup</button>
 
   <div id="player2" style="width: 640px; height: 480px; background-color: aqua;">
+    <object></object>
       <!-- <OBJECT style="width: 640px; height: 480px" classid="CLSID:872b31ba-01b5-4264-93e0-169d9c298c06" id="player2"></OBJECT> -->
   </div>
   <button id="Init2">Init2</button>
@@ -23,8 +36,29 @@
   <button id="stop2">stop2</button>
   <button id="cleanup2">cleanup2</button>
 
+  <div id="video-wall"></div>
+
+  <!-- All Jquery -->
+  <script src="./plugins/bower_components/jquery/dist/jquery.min.js"></script> 
+  <!-- Bootstrap Core JavaScript -->
+  <script src="./bootstrap/dist/js/bootstrap.min.js"></script>      
+  <!-- Menu Plugin JavaScript -->
+  <script src="./plugins/bower_components/sidebar-nav/dist/sidebar-nav.min.js"></script>
   <script src="./player.js"></script>
+  <script src="./videoWall.js"></script>
   <script>
+    var wall = new VideoComponent('#video-wall');
+    wall.setDName('device name');
+    wall.setCName('channel 1');
+    wall.setColClass('col-xs-4');
+    wall.startPlay({
+      type: 0,
+      hostIP: '60.191.194.246',
+      hostPort: 8000,
+      channel: 33,
+      userName: 'admin',
+      password: 'lin630563',
+    });
     // window.onload=function(){
     //   var player = document.getElementById("player");
     //   player.AboutBox();
@@ -34,7 +68,7 @@
     var btnStop = document.getElementById('stop');
     var btnCleanup = document.getElementById('cleanup');
     // var player = document.getElementById('player');
-    var player = new Player(document.getElementById('player'), {
+    var player = new Player($('#player'), {
       type: 0,
       hostIP: '60.191.194.246',
       hostPort: 8000,
@@ -68,7 +102,7 @@
     var btnStop2 = document.getElementById('stop2');
     var btnCleanup2 = document.getElementById('cleanup2');
     // var player2 = document.getElementById('player2');
-    var player2 = new Player(document.getElementById('player2'), {
+    var player2 = new Player($('#player2'), {
       type: 1,
       appKey: '7fbc3cdc0ad649f88831b6adc08b9843',
       accessToken: 'at.7f2v4fpv6530olun0726cx702uq1ihwq-2h5jtmzikp-0gil3e1-ybiz56dhy',
