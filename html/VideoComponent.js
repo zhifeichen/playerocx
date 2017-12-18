@@ -42,3 +42,11 @@ VideoComponent.prototype.startPlay = function(config) {
 VideoComponent.prototype.stopPlay = function() {
     this.player.StopPlay();
 };
+
+VideoComponent.prototype.setActive = function() {
+    this.container.addClass('b-all panel-success');
+}
+
+VideoComponent.prototype.removeActive = function() {
+    this.container.removeClass('b-all panel-success');
+}

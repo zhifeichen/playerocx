@@ -45,7 +45,7 @@
   <!-- Menu Plugin JavaScript -->
   <script src="./plugins/bower_components/sidebar-nav/dist/sidebar-nav.min.js"></script>
   <script src="./player.js"></script>
-  <script src="./videoWall.js"></script>
+  <script src="./VideoComponent.js"></script>
   <script>
     var wall = new VideoComponent('#video-wall');
     wall.setDName('device name');
@@ -59,6 +59,7 @@
       userName: 'admin',
       password: 'lin630563',
     });
+    wall.setActive();
     // window.onload=function(){
     //   var player = document.getElementById("player");
     //   player.AboutBox();
