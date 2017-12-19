@@ -29,14 +29,22 @@
 
   <div id="player2" style="width: 640px; height: 480px; background-color: aqua;">
     <object></object>
-      <!-- <OBJECT style="width: 640px; height: 480px" classid="CLSID:872b31ba-01b5-4264-93e0-169d9c298c06" id="player2"></OBJECT> -->
+      <!-- <OBJECT style="width: 640px; height: 480px" classid="CLSID:872b31ba-01b5-4264-93e0-169d9c298c06" id="player3"></OBJECT> -->
   </div>
   <button id="Init2">Init2</button>
   <button id="start2">start2</button>
   <button id="stop2">stop2</button>
   <button id="cleanup2">cleanup2</button>
 
+  <div class="col-md-8">
   <div id="video-wall"></div>
+  <button id="layout1">layout1</button>
+  <button id="layout4">layout4</button>
+  <button id="layout9">layout9</button>
+  <button id="wall-play">play</button>
+  <button id="wall-play-ys">play ys</button>
+  <button id="stop-all">stop all</button>
+  </div>
 
   <!-- All Jquery -->
   <script src="./plugins/bower_components/jquery/dist/jquery.min.js"></script> 
@@ -46,20 +54,60 @@
   <script src="./plugins/bower_components/sidebar-nav/dist/sidebar-nav.min.js"></script>
   <script src="./player.js"></script>
   <script src="./VideoComponent.js"></script>
+  <script src="./VideoWall.js"></script>
+
+  <script  language="javascript" for="player3" event="onclick()">
+    alert('click!!!');
+  </script>
+
   <script>
-    var wall = new VideoComponent('#video-wall');
-    wall.setDName('device name');
-    wall.setCName('channel 1');
-    wall.setColClass('col-xs-4');
-    wall.startPlay({
-      type: 0,
-      hostIP: '60.191.194.246',
-      hostPort: 8000,
-      channel: 33,
-      userName: 'admin',
-      password: 'lin630563',
+    var wall = new VideoWall('#video-wall');
+    $('#layout1').click(function(){
+      wall.setLayout(1);
     });
-    wall.setActive();
+    $('#layout4').click(function(){
+      wall.setLayout(4);
+    });
+    $('#layout9').click(function(){
+      wall.setLayout(9);
+    });
+    $('#wall-play').click(function(){
+      wall.startPlay({
+        type: 1,
+        hostIP: '60.191.194.246',
+        hostPort: 8000,
+        channel: 33,
+        userName: 'admin',
+        password: 'lin630563',
+      });
+    });
+    $('#wall-play-ys').click(function(){
+      wall.startPlay({
+        type: 0,
+        appKey: '7fbc3cdc0ad649f88831b6adc08b9843',
+        accessToken: 'at.7f2v4fpv6530olun0726cx702uq1ihwq-2h5jtmzikp-0gil3e1-ybiz56dhy',
+        channel: 1,
+        device: 426875565,
+      });
+    });
+    $('#stop-all').click(function(){
+      wall.stopPlayAll();
+    })
+    // var wall = new VideoComponent('#video-wall');
+    // wall.setDName('device name');
+    // wall.setCName('channel 1');
+    // wall.setColClass('col-xs-4');
+    // wall.startPlay({
+    //   type: 1,
+    //   hostIP: '60.191.194.246',
+    //   hostPort: 8000,
+    //   channel: 33,
+    //   userName: 'admin',
+    //   password: 'lin630563',
+    // });
+    // wall.click(function(id){
+    //   wall.setActive();
+    // });
     // window.onload=function(){
     //   var player = document.getElementById("player");
     //   player.AboutBox();
@@ -70,12 +118,15 @@
     var btnCleanup = document.getElementById('cleanup');
     // var player = document.getElementById('player');
     var player = new Player($('#player'), {
-      type: 0,
+      type: 1,
       hostIP: '60.191.194.246',
       hostPort: 8000,
       channel: 33,
       userName: 'admin',
       password: 'lin630563',
+    });
+    player.getPlayer().click(function(){
+      alert('clicked!');
     });
     btnAbout.onclick = function(){
       var r = player.Init();
@@ -104,10 +155,9 @@
     var btnCleanup2 = document.getElementById('cleanup2');
     // var player2 = document.getElementById('player2');
     var player2 = new Player($('#player2'), {
-      type: 1,
+      type: 0,
       appKey: '7fbc3cdc0ad649f88831b6adc08b9843',
       accessToken: 'at.7f2v4fpv6530olun0726cx702uq1ihwq-2h5jtmzikp-0gil3e1-ybiz56dhy',
-      url: 'ezopen://open.ys7.com/426875565/1.hd.live',
       channel: 1,
       device: 426875565,
     });
