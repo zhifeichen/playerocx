@@ -2,13 +2,13 @@ function VideoComponent(container, id) {
     if(!(this instanceof VideoComponent)) {
         return new VideoComponent(container, id);
     }
-    this.container = $('<div class="col-xs-4 m-t-15 p-l-0 p-r-10"> \
+    this.container = $('<div class="col-xs-4"> \
                             <div style="width: 100%; height: 100%; z-index: -1"><object></object></div> \
                             <div class="bxi-cover"> \
                                 <p>浙江大学</p> \
                                 <p>湖边-摄像头</p> \
                             </div> \
-                            <div style="position: absolute; left: 0; top: 0; width: 100%; height: 100%; z-index:100;"> \
+                            <div style="position: absolute; left: 15px; top: 0; width: 100%; height: 100%; z-index:100;"> \
                                 <img src="./plugins/images/weather-bg.jpg"> \
                             </div> \
                         </div>');
@@ -21,7 +21,7 @@ function VideoComponent(container, id) {
     this.id = id;
 
     $(container).append(this.container);
-    this.container.height((this.container.width() * 3 / 4) >>> 0);
+    this.container.height(Math.floor(this.container.width() * 3 / 4));
 
     var self = this;
     var img = this.container.find('img');
@@ -55,8 +55,17 @@ VideoComponent.prototype.setColClass = function(colClass) {
     this.container.removeClass(this.colClass);
     this.colClass = colClass;
     this.container.addClass(this.colClass);
-    this.container.height((this.container.width() * 3 / 4) >>> 0); 
+    // this.container.height(Math.floor(this.container.width() * 3 / 4));
     
+    // var img = this.container.find('img');
+    // img.width(this.container.width());
+    // img.height(this.container.height());
+};
+
+VideoComponent.prototype.adjustHeight = function(adjust) {
+    var a = 0;
+    if(adjust) a = 1;
+    this.container.height(Math.floor(this.container.width() * 3 / 4) - a);
     var img = this.container.find('img');
     img.width(this.container.width());
     img.height(this.container.height());
